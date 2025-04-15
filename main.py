@@ -1,5 +1,6 @@
 import os
 import json
+import datetime
 from werkzeug.utils import secure_filename
 from flask import Flask, send_file, render_template, request, redirect, url_for, flash, session, send_from_directory, abort
 
@@ -177,9 +178,12 @@ def admin():
                         
                         # 保存元数据
                         metadata = load_metadata()
+                        # 获取当前时间并格式化
+                        current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                         metadata[safe_path_name] = {
                             'title': article_title,
-                            'cover': cover_filename
+                            'cover': cover_filename,
+                            'upload_time': current_time
                         }
                         save_metadata(metadata)
                         
@@ -231,7 +235,7 @@ def admin():
 # --- Main Execution ---
 def main():
     app.template_folder = os.path.join(os.path.dirname(__file__), 'src')
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8888)))
 
 if __name__ == "__main__":
     os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)

@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>财富与幸福的真相 - Naval Ravikant的生活哲学</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+
+      :root {
+        --primary: #5e5adb;
+        --primary-dark: #4641c0;
+        --secondary: #84c7ae;
+        --accent: #f8805f;
+        --bg-light: #f9fafb;
+        --bg-dark: #1f2937;
+        --text-light: #374151;
+        --text-dark: #e5e7eb;
+      }
+
+      body {
+        font-family: 'Noto Sans SC', sans-serif;
+        transition: all 0.3s ease;
+      }
+
+      .light {
+        --bg-color: var(--bg-light);
+        --text-color: var(--text-light);
+        --card-bg: #ffffff;
+        --border-color: #e5e7eb;
+      }
+
+      .dark {
+        --bg-color: var(--bg-dark);
+        --text-color: var(--text-dark);
+        --card-bg: #2d3748;
+        --border-color: #4b5563;
+      }
+
+      /* 自定义滚动条 */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e0;
+        border-radius: 3px;
+      }
+
+      .dark ::-webkit-scrollbar-thumb {
+        background: #4a5568;
+      }
+
+      /* 卡片悬停效果 */
+      .insight-card {
+        transition: all 0.3s ease;
+      }
+
+      .insight-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .dark .insight-card:hover {
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3),
+          0 10px 10px -5px rgba(0, 0, 0, 0.2);
+      }
+
+      /* 按钮效果 */
+      .btn {
+        transition: all 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: scale(1.05);
+      }
+
+      /* 渐入动画 */
+      .fade-in {
+        animation: fadeIn 0.8s ease-in-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 延迟动画 */
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+      .delay-4 {
+        animation-delay: 0.4s;
+      }
+      .delay-5 {
+        animation-delay: 0.5s;
+      }
+
+      /* 引用样式 */
+      blockquote {
+        border-left: 4px solid var(--primary);
+        padding-left: 1rem;
+      }
+    </style>
+  </head>
+
+  <body
+    class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-200 transition-colors duration-200"
+  >
+    <!-- 导航条 -->
+    <nav
+      class="sticky top-0 z-50 backdrop-blur-md bg-white/70 dark:bg-gray-900/70 border-b border-gray-200 dark:border-gray-700 shadow-sm"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16">
+          <div class="flex items-center">
+            <span class="text-xl font-bold text-indigo-600 dark:text-indigo-400"
+              >Naval's Life Manual</span
+            >
+          </div>
+          <div class="flex items-center space-x-4">
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            >
+              <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+              <i class="fas fa-moon text-blue-300 hidden dark:block"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- 头部区域 -->
+    <header
+      class="relative overflow-hidden bg-gradient-to-r from-indigo-600 to-violet-500 dark:from-indigo-800 dark:to-violet-900 text-white"
+    >
+      <div class="absolute inset-0 bg-pattern opacity-10"></div>
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative z-10"
+      >
+        <div class="mb-8 fade-in">
+          <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            你的生活，是不是也一团糟？
+          </h1>
+          <p class="text-xl md:text-2xl opacity-90 max-w-3xl">
+            Naval Ravikant
+            带你探索财富、幸福与个人成长的真相，不讲鸡汤，只谈本质。
+          </p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 fade-in delay-1">
+          <a
+            href="#wealth"
+            class="btn bg-white text-indigo-700 hover:bg-gray-100 px-6 py-3 rounded-lg font-medium shadow-lg"
+          >
+            财富密码
+          </a>
+          <a
+            href="#happiness"
+            class="btn bg-indigo-700 bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 border border-white border-opacity-30 px-6 py-3 rounded-lg font-medium"
+          >
+            幸福之道
+          </a>
+          <a
+            href="#growth"
+            class="btn bg-indigo-700 bg-opacity-20 backdrop-blur-sm hover:bg-opacity-30 border border-white border-opacity-30 px-6 py-3 rounded-lg font-medium"
+          >
+            个人成长
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- 介绍区域 -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div
+        class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 relative overflow-hidden fade-in"
+      >
+        <div
+          class="absolute -right-12 -top-12 w-64 h-64 bg-indigo-100 dark:bg-indigo-900/20 rounded-full opacity-70"
+        ></div>
+        <div class="relative">
+          <div class="flex items-center mb-6">
+            <div
+              class="w-16 h-16 bg-indigo-100 dark:bg-indigo-900 rounded-full flex items-center justify-center mr-4"
+            >
+              <i
+                class="fas fa-quote-right text-3xl text-indigo-500 dark:text-indigo-400"
+              ></i>
+            </div>
+            <div>
+              <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
+                Naval Ravikant
+              </h2>
+              <p class="text-gray-600 dark:text-gray-400">
+                投资人 / 创业者 / 思想家
+              </p>
+            </div>
+          </div>
+
+          <p
+            class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-6"
+          >
+            嘿，你好，我是Naval
+            Ravikant，一个在硅谷混了多年的家伙，既是投资人，也是创业者，还喜欢没事瞎琢磨人生的大叔。今天，我要跟你聊点真东西——财富、幸福，还有怎么活得像个人样。别误会，我不是那种给你灌鸡汤的家伙，也不会跟你说"相信自己你就行"之类废话。生活没那么简单，但也没那么复杂，只要你搞明白几件事。
+          </p>
+
+          <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+            想象一下：你每天早上醒来，刷着手机，看着别人晒豪车、晒度假，心里是不是有点酸？然后你打开银行账户，看看那可怜的余额，觉得自己这辈子是不是就这样了？或者你赚了一堆钱，却发现自己还是不快乐，日子过得像个行尸走肉？如果你有这种感觉，恭喜你，你跟大多数人一样，掉进了现代社会的陷阱。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 财富部分 -->
+    <section id="wealth" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-16 fade-in">
+        <span
+          class="inline-block py-1 px-3 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 text-sm font-semibold mb-4"
+          >第一章</span
+        >
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+        >
+          财富 — 别再卖时间了，笨蛋
+        </h2>
+        <p class="max-w-3xl mx-auto text-xl text-gray-600 dark:text-gray-400">
+          财富不是你想的那样，它需要的是创造与杠杆，而不是无止境地出售你有限的时间
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 财富不是你想的那样 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4">
+            <i class="fas fa-lightbulb text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            财富不是你想的那样
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            很多人一听到"财富"，脑子里就浮现出豪宅、跑车和一堆钞票。错！那叫金钱，不是财富。金钱只是个工具，像超市的购物券，拿来换东西的。真正的财富是那种你睡着了也能赚钱的东西——资产、股权、能持续产生价值的东西。
+          </p>
+          <div class="mt-6">
+            <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+              <p class="italic text-gray-600 dark:text-gray-400">
+                "我有个朋友，叫Mike。他以前是个码农，每天加班到凌晨，赚了点钱，但累得像条狗。后来他跳槽，拿了点股权...几年后公司被收购，他直接财务自由。这就是财富和金钱的区别：一个是奴隶，一个是主人。"
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 别再出租你的时间 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4">
+            <i class="fas fa-clock text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            别再出租你的时间
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            大多数人致富的方式是错的。他们靠卖时间赚钱——上班、接单、加班。如果你还在按小时计费，你永远富不了。因为你一天只有24小时，能卖的时间顶多十几个小时。你再牛逼，也不可能靠这点时间赚出个亿。
+          </p>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            想翻身？得拥有股权。股权是什么？就是你拥有某样东西的一部分，比如公司的股份。有了股权，你就从卖时间的苦力，变成了坐着收租的地主。
+          </p>
+        </div>
+
+        <!-- 创造价值，然后放大它 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-3"
+        >
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4">
+            <i class="fas fa-rocket text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            创造价值，然后放大它
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            致富的秘诀就八个字：创造价值，规模化。为社会提供别人想要但得不到的东西，然后想办法让它服务更多人。比如，乔布斯搞了个iPhone，解决了大家对酷炫手机的需求，然后卖了几亿台。
+          </p>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            怎么规模化？用杠杆。杠杆有四种：劳动力（雇人干活）、资本（用钱赚钱）、代码（写软件自动跑）、媒体（拍视频写文章吸引流量）。现代社会最牛的杠杆是代码和媒体，因为它们几乎没成本，能无限复制。
+          </p>
+        </div>
+
+        <!-- 耐心点，别急着发财 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-4"
+        >
+          <div class="text-indigo-600 dark:text-indigo-400 mb-4">
+            <i class="fas fa-seedling text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            耐心点，别急着发财
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            别指望一夜暴富。那种事只有彩票和赌场才有，但你我都知道那是骗傻子的。致富需要时间和耐心。选个有长期前景的行业，找靠谱的伙伴，然后慢慢熬。就像种树，你得先埋下种子，浇水施肥，等它长成参天大树，才能摘果子。
+          </p>
+          <div class="mt-4 p-4 bg-indigo-50 dark:bg-indigo-900/30 rounded-lg">
+            <p class="text-indigo-700 dark:text-indigo-300 mb-2 font-medium">
+              Naval 的经验:
+            </p>
+            <p class="text-gray-700 dark:text-gray-300">
+              "我刚开始创业时，第一家公司赔得底裤都没了。但我没放弃，总结教训，又开了第二家。这次我选了个更有潜力的领域，找了几个靠谱的合伙人，硬是熬了五年才见回报。现在回头看，那些熬过的日子，才是我财富的根基。"
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 财富总结 -->
+      <div
+        class="mt-12 bg-indigo-50 dark:bg-indigo-900/20 p-8 rounded-2xl fade-in delay-5"
+      >
+        <h3
+          class="text-2xl font-bold mb-4 text-indigo-700 dark:text-indigo-300"
+        >
+          财富的本质
+        </h3>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+            <h4 class="font-bold text-gray-900 dark:text-white mb-2">
+              创造价值
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              解决他人的问题，提供真正有价值的产品或服务
+            </p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+            <h4 class="font-bold text-gray-900 dark:text-white mb-2">
+              运用杠杆
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              代码、媒体、资本、劳动力 - 放大你的影响力
+            </p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+            <h4 class="font-bold text-gray-900 dark:text-white mb-2">
+              拥有股权
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              从出租时间到拥有资产，让财富自动增长
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 幸福部分 -->
+    <section
+      id="happiness"
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16"
+    >
+      <div class="text-center mb-16 fade-in">
+        <span
+          class="inline-block py-1 px-3 rounded-full bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-sm font-semibold mb-4"
+          >第二章</span
+        >
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+        >
+          幸福 — 别再追错了，傻瓜
+        </h2>
+        <p class="max-w-3xl mx-auto text-xl text-gray-600 dark:text-gray-400">
+          幸福是内心状态而非外在条件，学会选择正确的欲望，幸福感会自然增长
+        </p>
+      </div>
+
+      <!-- 主要内容 -->
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 幸福不是你买得起的 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-green-600 dark:text-green-400 mb-4">
+            <i class="fas fa-heart text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            幸福不是你买得起的
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            你是不是觉得赚了钱就会开心？买个包、换辆车，生活就美满了？醒醒吧，那些东西顶多让你爽几天，然后你就又回到原来的空虚。我见过太多有钱人，住着豪宅却抑郁得要命，因为他们搞错了幸福的本质。
+          </p>
+          <p class="text-gray-700 dark:text-gray-300">
+            幸福不是外面的东西能给你的，它是内心的状态。是一种"你现在这样就挺好"的感觉。佛教里说，欲望是痛苦的根源，我深以为然。你越想要更多，就越觉得自己不够，越不快乐。
+          </p>
+        </div>
+
+        <!-- 欲望是自找的麻烦 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-green-600 dark:text-green-400 mb-4">
+            <i class="fas fa-balance-scale text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            欲望是自找的麻烦
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            我小时候住在纽约一个破小区，家里穷得叮当响，但我妈总跟我说："我们有彼此就够了。"那时候我没啥欲望，每天在图书馆看书，日子过得简单又满足。后来我开始创业，赚了点钱，突然想要豪车、想要大房子，结果呢？压力大了，睡眠少了，整天焦虑得像个神经病。
+          </p>
+          <div class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+            <p class="text-gray-700 dark:text-gray-300">
+              <span class="font-bold">关键启示：</span>
+              欲望是你自己选的不开心。你告诉自己："我要那个新iPhone，不然我不爽。"但你真的拿到了，又会想要下一个东西。怎么办？学会挑欲望。别啥都想要，挑那些真正重要的，其他的就随它去。
+            </p>
+          </div>
+        </div>
+
+        <!-- 幸福是门技术活 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-green-600 dark:text-green-400 mb-4">
+            <i class="fas fa-brain text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            幸福是门技术活
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            好消息是，幸福是可以练出来的。怎么练？养几个好习惯：
+          </p>
+          <ul class="space-y-3 text-gray-700 dark:text-gray-300 mb-4">
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span
+                ><strong>冥想</strong
+                >：每天5分钟，啥也不干，就坐着观察自己的想法。别小看这5分钟，能让你冷静不少。</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span
+                ><strong>运动</strong
+                >：跑步、瑜伽，随便啥，每天动一动，压力就少一半。</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span
+                ><strong>感恩</strong
+                >：晚上想想今天有啥值得高兴的事，哪怕是吃了个好三明治。</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span
+                ><strong>少评判</strong
+                >：别老盯着别人的缺点看，也别对自己太苛刻。</span
+              >
+            </li>
+            <li class="flex items-start">
+              <span class="text-green-500 mr-2">✓</span>
+              <span
+                ><strong>活在当下</strong
+                >：别老想着明天咋办，专注现在手头的事。</span
+              >
+            </li>
+          </ul>
+          <p class="text-gray-700 dark:text-gray-300">
+            我有个习惯，每天早上洗冷水澡。一开始冻得要命，但坚持下来后，我发现自己居然挺享受那种清醒的感觉。这就是接受现实的力量——你不抗拒它，它就没那么可怕。
+          </p>
+        </div>
+
+        <!-- 接受现实，别跟自己过不去 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-green-600 dark:text-green-400 mb-4">
+            <i class="fas fa-peace text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            接受现实，别跟自己过不去
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            生活总有不如意的时候，关键是你怎么看。比如我创业失败那次，差点破产，朋友都劝我放弃。但我没崩溃，反而坐下来想想：好吧，钱没了，但经验还在，下次怎么干得更好？接受现实不是认输，是把精力用在能改变的事上。
+          </p>
+
+          <div class="bg-green-50 dark:bg-green-900/30 p-4 rounded-lg mt-4">
+            <h4 class="font-bold text-green-800 dark:text-green-300 mb-2">
+              实践方法
+            </h4>
+            <ul class="space-y-2 text-gray-700 dark:text-gray-300">
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                面对困难时，问自己："我能控制什么？不能控制什么？"
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                把注意力放在"能控制"的列表上
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                每天记录三件感恩的事，无论大小
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 幸福总结 -->
+      <div
+        class="mt-12 bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl fade-in delay-3"
+      >
+        <h3 class="text-2xl font-bold mb-6 text-green-700 dark:text-green-300">
+          幸福练习日程表
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-5">
+            <h4
+              class="font-bold text-gray-900 dark:text-white flex items-center mb-3"
+            >
+              <span class="text-green-500 mr-2">⏰</span> 早晨
+            </h4>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+              <li>5分钟冥想</li>
+              <li>简单运动</li>
+              <li>写下今天的意图</li>
+            </ul>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-5">
+            <h4
+              class="font-bold text-gray-900 dark:text-white flex items-center mb-3"
+            >
+              <span class="text-green-500 mr-2">☀️</span> 白天
+            </h4>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+              <li>专注当下任务</li>
+              <li>注意欲望出现</li>
+              <li>短暂休息，深呼吸</li>
+            </ul>
+          </div>
+          <div class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-5">
+            <h4
+              class="font-bold text-gray-900 dark:text-white flex items-center mb-3"
+            >
+              <span class="text-green-500 mr-2">🌙</span> 晚上
+            </h4>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-400">
+              <li>记录3件感恩的事</li>
+              <li>反思今天的选择</li>
+              <li>无屏幕时间放松</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 个人成长部分 -->
+    <section id="growth" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-16 fade-in">
+        <span
+          class="inline-block py-1 px-3 rounded-full bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-300 text-sm font-semibold mb-4"
+          >第三章</span
+        >
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+        >
+          个人成长 — 救自己，别指望别人
+        </h2>
+        <p class="max-w-3xl mx-auto text-xl text-gray-600 dark:text-gray-400">
+          找到自我，持续学习，培养独立思考能力，为自己的人生负责
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 先搞清楚你是谁 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-orange-600 dark:text-orange-400 mb-4">
+            <i class="fas fa-compass text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            先搞清楚你是谁
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            想活得好，先得认识自己。你想要啥？不想要啥？别老活在别人的期待里。我认识一个女孩，叫Sarah，家里让她学医，她学得要吐了，最后还是辍学去开了家咖啡店。现在她每天忙得开心，因为那是她自己的路。
+          </p>
+          <div class="bg-orange-50 dark:bg-orange-900/30 rounded-lg p-4 mt-4">
+            <h4 class="font-medium text-orange-800 dark:text-orange-300 mb-2">
+              自我探索指南
+            </h4>
+            <p class="text-gray-700 dark:text-gray-300">
+              怎么认识自己？问问小时候的你。那时候你喜欢干啥？画画、搭积木、还是瞎跑乱跳？那些不费力就让你开心的事，往往是你的天赋。
+            </p>
+            <div class="mt-4 text-gray-600 dark:text-gray-400">
+              <p className="font-medium">问自己这些问题：</p>
+              <ul class="list-disc pl-5 mt-2 space-y-1">
+                <li>如果不考虑金钱，我会选择做什么？</li>
+                <li>什么活动让我进入"心流"状态？</li>
+                <li>哪些活动让我感到时间过得特别快？</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- 别停下学习的脚步 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-orange-600 dark:text-orange-400 mb-4">
+            <i class="fas fa-book text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            别停下学习的脚步
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            现代社会变化太快，你不学就废了。但别去读那些热门的鸡汤书，浪费时间。读经典——数学、物理、哲学、经济学，那些经过时间考验的东西。我小时候在图书馆泡着，读了一堆杂书，后来创业时，那些知识全派上了用场。
+          </p>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            怎么学？别死记硬背，理解本质。比如概率学，你不用算得飞快，但得明白它怎么帮你判断风险。这比你拿个MBA有用多了。
+          </p>
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span
+              class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300 rounded-full text-sm"
+              >数学</span
+            >
+            <span
+              class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300 rounded-full text-sm"
+              >物理学</span
+            >
+            <span
+              class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300 rounded-full text-sm"
+              >哲学</span
+            >
+            <span
+              class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300 rounded-full text-sm"
+              >经济学</span
+            >
+            <span
+              class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300 rounded-full text-sm"
+              >心理学</span
+            >
+            <span
+              class="px-3 py-1 bg-orange-100 dark:bg-orange-900/50 text-orange-800 dark:text-orange-300 rounded-full text-sm"
+              >历史</span
+            >
+          </div>
+        </div>
+
+        <!-- 自己动脑，别跟风 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-orange-600 dark:text-orange-400 mb-4">
+            <i class="fas fa-brain text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            自己动脑，别跟风
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            独立思考很难，但必须学会。别听别人瞎忽悠，自己去验证。我有个合伙人，总爱跟风炒概念，结果老赔钱。后来我逼着他自己分析数据，半年后，他终于学会了挑靠谱的项目。
+          </p>
+          <div class="mt-6">
+            <h4 class="font-medium text-gray-900 dark:text-white mb-3">
+              培养独立思考的步骤
+            </h4>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <div
+                  class="rounded-full bg-orange-100 dark:bg-orange-900/50 w-8 h-8 flex items-center justify-center text-orange-800 dark:text-orange-300 font-bold mr-3"
+                >
+                  1
+                </div>
+                <p class="text-gray-700 dark:text-gray-300">
+                  质疑权威和"专家"的观点
+                </p>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="rounded-full bg-orange-100 dark:bg-orange-900/50 w-8 h-8 flex items-center justify-center text-orange-800 dark:text-orange-300 font-bold mr-3"
+                >
+                  2
+                </div>
+                <p class="text-gray-700 dark:text-gray-300">
+                  寻找原始数据和一手资料
+                </p>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="rounded-full bg-orange-100 dark:bg-orange-900/50 w-8 h-8 flex items-center justify-center text-orange-800 dark:text-orange-300 font-bold mr-3"
+                >
+                  3
+                </div>
+                <p class="text-gray-700 dark:text-gray-300">
+                  了解多个不同观点和反对意见
+                </p>
+              </div>
+              <div class="flex items-center">
+                <div
+                  class="rounded-full bg-orange-100 dark:bg-orange-900/50 w-8 h-8 flex items-center justify-center text-orange-800 dark:text-orange-300 font-bold mr-3"
+                >
+                  4
+                </div>
+                <p class="text-gray-700 dark:text-gray-300">
+                  形成自己的结论并进行实际验证
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 为自己负责，别怨天尤人 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-orange-600 dark:text-orange-400 mb-4">
+            <i class="fas fa-hand-holding-heart text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            为自己负责，别怨天尤人
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            你的生活是你自己的，别怪社会、怪父母、怪运气。我妈一个人把我拉扯大，没抱怨过一句。她教会我一件事：没人欠你的，你得自己扛。
+          </p>
+          <div class="p-5 bg-gray-50 dark:bg-gray-700 rounded-lg mt-4">
+            <blockquote class="text-lg italic text-gray-700 dark:text-gray-300">
+              "当你100%为自己的生活负责时，你会发现你也拥有了100%的掌控权。抱怨是对自己能力的否认，接受责任则是释放自己潜能的开始。"
+            </blockquote>
+          </div>
+        </div>
+      </div>
+
+      <!-- 个人成长可视化 -->
+      <div class="mt-12 fade-in delay-3">
+        <h3
+          class="text-2xl font-bold mb-6 text-gray-900 dark:text-white text-center"
+        >
+          个人成长的四大支柱
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+            <div
+              class="h-12 w-12 bg-orange-100 dark:bg-orange-900/50 rounded-full flex items-center justify-center mb-4"
+            >
+              <i
+                class="fas fa-search text-orange-600 dark:text-orange-400 text-xl"
+              ></i>
+            </div>
+            <h4 class="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              自我认知
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              了解自己的价值观、激情和天赋所在，找到合适的人生方向
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+            <div
+              class="h-12 w-12 bg-orange-100 dark:bg-orange-900/50 rounded-full flex items-center justify-center mb-4"
+            >
+              <i
+                class="fas fa-graduation-cap text-orange-600 dark:text-orange-400 text-xl"
+              ></i>
+            </div>
+            <h4 class="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              持续学习
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              吸收经典知识，理解原理本质，将知识转化为实际能力
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+            <div
+              class="h-12 w-12 bg-orange-100 dark:bg-orange-900/50 rounded-full flex items-center justify-center mb-4"
+            >
+              <i
+                class="fas fa-lightbulb text-orange-600 dark:text-orange-400 text-xl"
+              ></i>
+            </div>
+            <h4 class="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              独立思考
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              质疑权威，收集数据，分析推理，形成自己的观点
+            </p>
+          </div>
+
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow">
+            <div
+              class="h-12 w-12 bg-orange-100 dark:bg-orange-900/50 rounded-full flex items-center justify-center mb-4"
+            >
+              <i
+                class="fas fa-shield-alt text-orange-600 dark:text-orange-400 text-xl"
+              ></i>
+            </div>
+            <h4 class="font-bold text-lg mb-2 text-gray-900 dark:text-white">
+              责任担当
+            </h4>
+            <p class="text-gray-600 dark:text-gray-400">
+              为自己的选择和结果负责，不怨天尤人，专注解决方案
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 决策部分 -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-16 fade-in">
+        <span
+          class="inline-block py-1 px-3 rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 text-sm font-semibold mb-4"
+          >第四章</span
+        >
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+        >
+          决策 — 别瞎忙，用点脑子
+        </h2>
+        <p class="max-w-3xl mx-auto text-xl text-gray-600 dark:text-gray-400">
+          学会清晰思考，掌握基础知识，避免认知偏见，做出更明智的选择
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 想清楚，别被情绪牵着走 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-blue-600 dark:text-blue-400 mb-4">
+            <i class="fas fa-chess text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            想清楚，别被情绪牵着走
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            清晰思考是做好决策的根。怎么想清楚？把问题拆开，找到本质。比如你想换工作，别光看工资，问问自己：这份工作五年后能给我啥？
+          </p>
+          <div
+            class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg space-y-3 mt-4"
+          >
+            <h4 class="font-medium text-blue-800 dark:text-blue-300">
+              超越情绪的决策框架
+            </h4>
+            <ol
+              class="list-decimal list-inside text-gray-700 dark:text-gray-300 space-y-2"
+            >
+              <li>识别问题或决策的核心</li>
+              <li>列出所有可能的选择</li>
+              <li>评估每个选择的长期后果</li>
+              <li>考虑风险和最坏情况</li>
+              <li>设定决策的截止时间</li>
+              <li>做出选择并承诺行动</li>
+            </ol>
+            <p class="text-gray-700 dark:text-gray-300 mt-3 italic">
+              "情绪是短暂的顾问，但通常是糟糕的决策者。"
+            </p>
+          </div>
+        </div>
+
+        <!-- 学会说"不" -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-blue-600 dark:text-blue-400 mb-4">
+            <i class="fas fa-ban text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            学会说"不"
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            现代社会选项太多，你得学会拒绝。别啥都答应，不然你忙死也干不好。我现在每天只挑三件最重要的事做，其他的全推。
+          </p>
+          <div class="flex flex-col space-y-4 mt-6">
+            <div
+              class="bg-white dark:bg-gray-700 shadow-sm rounded-lg p-4 border-l-4 border-blue-500 dark:border-blue-400"
+            >
+              <h4 class="font-medium text-gray-900 dark:text-white mb-2">
+                拒绝的艺术
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400">
+                "不是现在"比直接说"不"更容易，但效果相同。学会保护你的时间和精力。
+              </p>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-700 shadow-sm rounded-lg p-4 border-l-4 border-blue-500 dark:border-blue-400"
+            >
+              <h4 class="font-medium text-gray-900 dark:text-white mb-2">
+                专注力胜过勤奋
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400">
+                一个专注的小时胜过八小时的分心工作。每天找到你的"黄金时段"。
+              </p>
+            </div>
+
+            <div
+              class="bg-white dark:bg-gray-700 shadow-sm rounded-lg p-4 border-l-4 border-blue-500 dark:border-blue-400"
+            >
+              <h4 class="font-medium text-gray-900 dark:text-white mb-2">
+                Naval的三件事原则
+              </h4>
+              <p class="text-gray-600 dark:text-gray-400">
+                每天早上列出三件最重要的事，完成后才考虑其他任务。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 基础知识是你的武器 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-blue-600 dark:text-blue-400 mb-4">
+            <i class="fas fa-calculator text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            基础知识是你的武器
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            别小看基础知识。数学、逻辑、概率，这些东西能让你看透很多事。比如我投资时，算算回报率和风险概率，避开了好几个坑。
+          </p>
+          <div class="grid grid-cols-2 gap-4 mt-4">
+            <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
+              <h4 class="font-medium text-blue-800 dark:text-blue-300 mb-2">
+                数学思维
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                复利效应、概率计算、统计分析，帮你避免常见计算错误
+              </p>
+            </div>
+
+            <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
+              <h4 class="font-medium text-blue-800 dark:text-blue-300 mb-2">
+                逻辑推理
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                归纳、演绎，发现论证中的漏洞和逻辑谬误
+              </p>
+            </div>
+
+            <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
+              <h4 class="font-medium text-blue-800 dark:text-blue-300 mb-2">
+                心理学基础
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                认知偏见、行为经济学、激励机制，理解人性
+              </p>
+            </div>
+
+            <div class="bg-blue-50 dark:bg-blue-900/30 p-4 rounded-lg">
+              <h4 class="font-medium text-blue-800 dark:text-blue-300 mb-2">
+                经济学思维
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                机会成本、边际效益、比较优势，做出更明智的资源分配
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 别被偏见坑了 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-blue-600 dark:text-blue-400 mb-4">
+            <i class="fas fa-bug text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            别被偏见坑了
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            人脑子容易犯傻，比如爱听好话、跟风跑。你得时时提醒自己：这事儿真有道理，还是我在自欺欺人？
+          </p>
+          <div class="space-y-4 mt-4">
+            <div class="flex items-start">
+              <div
+                class="bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 p-1 rounded-full mr-3"
+              >
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-white">
+                  确认偏误
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  我们倾向于寻找支持自己已有观点的信息，主动忽略相反证据
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div
+                class="bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 p-1 rounded-full mr-3"
+              >
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-white">
+                  沉没成本谬误
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  因为已经投入时间或金钱，而继续做一件不值得的事
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div
+                class="bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 p-1 rounded-full mr-3"
+              >
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-white">
+                  社会认同偏误
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  觉得很多人在做的事情就是对的，所以跟风行动
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start">
+              <div
+                class="bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300 p-1 rounded-full mr-3"
+              >
+                <i class="fas fa-exclamation-triangle"></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-white">
+                  近因效应
+                </h4>
+                <p class="text-sm text-gray-600 dark:text-gray-400">
+                  过分重视最近发生的事件，而忽略长期趋势和历史数据
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 生活哲学部分 -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="text-center mb-16 fade-in">
+        <span
+          class="inline-block py-1 px-3 rounded-full bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-300 text-sm font-semibold mb-4"
+          >第五章</span
+        >
+        <h2
+          class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white"
+        >
+          生活哲学 — 活得明白点
+        </h2>
+        <p class="max-w-3xl mx-auto text-xl text-gray-600 dark:text-gray-400">
+          寻找个人意义，活在当下，接受无常，成为自己生活的主人
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- 生命的意义？自己找 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-purple-600 dark:text-purple-400 mb-4">
+            <i class="fas fa-map-signs text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            生命的意义？自己找
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            生命的意义是个私人问题，别指望谁给你答案。对我来说，意义是探索、创造、享受。你呢？可能是养家、旅行、还是画画。没对错，自己定。
+          </p>
+          <div class="bg-purple-50 dark:bg-purple-900/30 p-6 rounded-lg mt-4">
+            <blockquote class="text-lg italic text-gray-800 dark:text-gray-200">
+              "人生是没有意义的——直到你决定赋予它意义。意义不是被发现的，而是被创造的。"
+            </blockquote>
+            <div
+              class="mt-4 text-right text-purple-700 dark:text-purple-300 font-medium"
+            >
+              — Naval Ravikant
+            </div>
+          </div>
+        </div>
+
+        <!-- 活在当下，别瞎想 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-1"
+        >
+          <div class="text-purple-600 dark:text-purple-400 mb-4">
+            <i class="fas fa-hourglass-half text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            活在当下，别瞎想
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            过去没了，未来还没来，你唯一有的就是现在。所以别老纠结昨天咋了，明天咋办，专注眼下。我每天早上喝咖啡时，都尽量啥也不想，就感受那股香味。这就是活在当下。
+          </p>
+          <div class="mt-6">
+            <h4 class="font-medium text-gray-900 dark:text-white mb-3">
+              当下练习
+            </h4>
+            <ul class="space-y-3 text-gray-700 dark:text-gray-300">
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">•</span>
+                <span>每天安排5分钟，专注于呼吸和身体感觉</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">•</span>
+                <span>做家务时，注意手的动作和水流的声音</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">•</span>
+                <span>吃饭时不看手机，感受食物的味道和质地</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-purple-500 mr-2">•</span>
+                <span>走路时注意脚步和周围环境，不要心不在焉</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 接受无常，别执着 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-purple-600 dark:text-purple-400 mb-4">
+            <i class="fas fa-water text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            接受无常，别执着
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            一切都在变，你抓不住。我有个朋友，生意做得好好的，突然破产了。他没崩溃，反而说："没了就没了，再来呗。"这种心态，才是真牛逼。
+          </p>
+          <div class="grid grid-cols-2 gap-4 mt-6">
+            <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg">
+              <h4 class="font-medium text-purple-800 dark:text-purple-300 mb-2">
+                无常的智慧
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                理解变化是唯一的常态，能让你更轻松地面对成功和失败
+              </p>
+            </div>
+
+            <div class="bg-purple-50 dark:bg-purple-900/30 p-4 rounded-lg">
+              <h4 class="font-medium text-purple-800 dark:text-purple-300 mb-2">
+                放下执着
+              </h4>
+              <p class="text-sm text-gray-700 dark:text-gray-300">
+                对结果的执着会带来痛苦，专注于过程和行动本身
+              </p>
+            </div>
+          </div>
+          <div
+            class="mt-4 p-4 rounded-lg border border-purple-200 dark:border-purple-800"
+          >
+            <p class="italic text-gray-700 dark:text-gray-300">
+              "你可以有目标，但别执着于结果。水流向低处，但不执着于何时到达大海。"
+            </p>
+          </div>
+        </div>
+
+        <!-- 你的人生，你说了算 -->
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-xl transition-shadow insight-card fade-in delay-2"
+        >
+          <div class="text-purple-600 dark:text-purple-400 mb-4">
+            <i class="fas fa-crown text-3xl"></i>
+          </div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            你的人生，你说了算
+          </h3>
+          <p class="text-gray-700 dark:text-gray-300 mb-4">
+            最终，你的意义是你自己创造的。别让别人告诉你该干啥，你得自己找。
+          </p>
+          <div class="flex flex-col space-y-4 mt-4">
+            <div
+              class="flex items-center p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg"
+            >
+              <div
+                class="rounded-full bg-purple-200 dark:bg-purple-700 p-3 mr-4"
+              >
+                <i
+                  class="fas fa-paint-brush text-purple-700 dark:text-purple-300"
+                ></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-white mb-1">
+                  创作者思维
+                </h4>
+                <p class="text-sm text-gray-700 dark:text-gray-300">
+                  把自己看作生活的创作者，而不是被动的接受者
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg"
+            >
+              <div
+                class="rounded-full bg-purple-200 dark:bg-purple-700 p-3 mr-4"
+              >
+                <i
+                  class="fas fa-route text-purple-700 dark:text-purple-300"
+                ></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-white mb-1">
+                  自主选择
+                </h4>
+                <p class="text-sm text-gray-700 dark:text-gray-300">
+                  认识到每一刻你都在做选择，无论是有意识还是无意识的
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="flex items-center p-4 bg-purple-50 dark:bg-purple-900/30 rounded-lg"
+            >
+              <div
+                class="rounded-full bg-purple-200 dark:bg-purple-700 p-3 mr-4"
+              >
+                <i
+                  class="fas fa-book-open text-purple-700 dark:text-purple-300"
+                ></i>
+              </div>
+              <div>
+                <h4 class="font-medium text-gray-900 dark:text-white mb-1">
+                  书写你的故事
+                </h4>
+                <p class="text-sm text-gray-700 dark:text-gray-300">
+                  你是自己生活的作者，不是配角，可以重写剧本
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 结语部分 -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div
+        class="bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-800 dark:to-purple-800 rounded-3xl p-8 md:p-12 text-white shadow-xl relative overflow-hidden fade-in"
+      >
+        <div class="absolute inset-0 bg-pattern opacity-10"></div>
+
+        <div class="relative z-10 max-w-3xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">你的生活，你做主</h2>
+          <p class="text-xl mb-8 opacity-90">
+            财富、幸福、成长、决策、哲学，我都跟你唠了个遍。你可能觉得信息量有点大，但别慌，慢慢消化。
+          </p>
+          <div class="mb-8">
+            <p class="text-lg mb-4">核心就这几点：</p>
+            <div class="grid md:grid-cols-2 gap-4 text-left">
+              <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                <p>财富靠创造和杠杆，别卖时间</p>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                <p>幸福是内心的选择，别追外面的东西</p>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                <p>成长靠学习和责任，别指望别人</p>
+              </div>
+              <div class="bg-white/10 backdrop-blur-sm p-4 rounded-lg">
+                <p>决策要清晰，别瞎忙</p>
+              </div>
+            </div>
+          </div>
+          <blockquote
+            class="text-xl italic border-l-4 border-white/30 pl-4 text-left mb-8"
+          >
+            "生活就是一堆shit，但你可以选择怎么处理它。"<br />
+            <span class="text-base opacity-80 mt-2 block">— Mark Manson</span>
+          </blockquote>
+          <p class="text-lg">
+            你呢？是接着抱怨，还是开始行动？你的生活，你做主。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 作者信息 -->
+    <footer
+      class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-gray-200 dark:border-gray-700"
+    >
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-white">
+            关于作者
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400 mb-6">
+            观默，全栈工程师、技术写作者、生活思考者。专注于分享技术、产品与个人成长的思考。
+          </p>
+          <div class="flex space-x-4">
+            <a
+              href="https://github.com/Ljhhhhhh"
+              target="_blank"
+              class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
+            >
+              <i class="fab fa-github text-2xl"></i>
+            </a>
+            <a
+              href="https://juejin.cn/user/1310273589481341"
+              target="_blank"
+              class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 transition-colors"
+            >
+              <i class="fas fa-code text-2xl"></i>
+            </a>
+          </div>
+        </div>
+        <div class="flex flex-col items-center md:items-end">
+          <div
+            class="mb-4 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-md inline-flex items-center"
+          >
+            <div class="mr-3">
+              <i
+                class="fas fa-newspaper text-2xl text-indigo-600 dark:text-indigo-400"
+              ></i>
+            </div>
+            <div>
+              <h4 class="font-medium text-gray-900 dark:text-white">
+                微信公众号
+              </h4>
+              <p class="text-sm text-gray-600 dark:text-gray-400">观默视界</p>
+            </div>
+          </div>
+          <p class="text-gray-500 dark:text-gray-400 text-sm">
+            © 2023 观默 版权所有
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // 深色模式切换功能
+      const htmlElement = document.documentElement;
+      const themeToggle = document.getElementById('theme-toggle');
+
+      // 初始化主题设置（跟随系统）
+      if (
+        window.matchMedia &&
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+      ) {
+        htmlElement.classList.remove('light');
+        htmlElement.classList.add('dark');
+      } else {
+        htmlElement.classList.remove('dark');
+        htmlElement.classList.add('light');
+      }
+
+      // 切换主题功能
+      themeToggle.addEventListener('click', () => {
+        if (htmlElement.classList.contains('dark')) {
+          htmlElement.classList.remove('dark');
+          htmlElement.classList.add('light');
+          localStorage.setItem('theme', 'light');
+        } else {
+          htmlElement.classList.remove('light');
+          htmlElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      // 监听系统主题变化
+      if (window.matchMedia) {
+        window
+          .matchMedia('(prefers-color-scheme: dark)')
+          .addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+              // 只有用户没有手动设置主题时才跟随系统
+              if (e.matches) {
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+              } else {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+              }
+            }
+          });
+      }
+
+      // 平滑滚动
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth',
+          });
+        });
+      });
+
+      // 滚动动画
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      fadeElements.forEach((el) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+      });
+    </script>
+  </body>
+</html>

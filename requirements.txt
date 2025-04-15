@@ -1,6 +1,11 @@
-# Dev environment
+# 应用框架
+flask>=2.0.0
+Werkzeug>=2.0.0
+
+# 生产环境
+gunicorn>=20.0.0
+gevent>=21.12.0
+
+# 开发工具
 pip
 autopep8
-
-# App
-flask

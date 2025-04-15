@@ -1,0 +1,16 @@
+[Unit]
+Description=Read Manager Web Application
+After=network.target
+
+[Service]
+# 使用普通用户运行服务
+User=root
+Group=root
+WorkingDirectory=/home/read-manager
+ExecStart=/bin/bash /home/read-manager/start_service.sh
+Restart=always
+RestartSec=5
+Environment=PORT=8888
+
+[Install]
+WantedBy=multi-user.target
