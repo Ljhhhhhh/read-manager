@@ -1,184 +1,667 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Resources</title>
-    <!-- Add Font Awesome for icons (Optional but recommended for visual appeal) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>阅读管理 - 精选内容</title>
+    <!-- 引入字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- 引入图标 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- 引入动画库 -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <style>
-        :root {
-            --primary-color: #007bff;
-            --primary-hover-color: #0056b3;
-            --background-color: #f8f9fa;
-            --card-background: #ffffff;
-            --text-color: #212529;
-            --muted-text-color: #6c757d;
-            --border-color: #dee2e6;
-            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-            --border-radius: 0.5rem; /* 8px */
-            --spacing-unit: 1rem; /* 16px */
-        }
+      :root {
+        --primary-color: #3d5af1;
+        --primary-light: #e8ebff;
+        --primary-dark: #2a3eb1;
+        --secondary-color: #ff6b6b;
+        --text-color: #2d3748;
+        --text-light: #718096;
+        --text-dark: #1a202c;
+        --background-color: #f8fafc;
+        --card-background: #ffffff;
+        --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --card-hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --border-color: #e2e8f0;
+        --border-radius: 0.75rem;
+        --border-radius-sm: 0.375rem;
+        --header-height: 70px;
+        --footer-height: 80px;
+        --container-width: 1280px;
+        --transition-normal: 0.3s ease;
+      }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-        body {
-            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--background-color);
-            margin: 0;
-            padding: var(--spacing-unit);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+      body {
+        font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont,
+          'Segoe UI', Roboto, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
 
-        .container {
-            max-width: 1200px; /* Allow wider container for grid */
-            margin: var(--spacing-unit) auto;
-        }
+      /* 布局容器 */
+      .container {
+        width: 100%;
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 1.5rem;
+      }
 
-        h1 {
-            text-align: center;
-            color: var(--text-color);
-            margin-top: 0;
-            margin-bottom: calc(var(--spacing-unit) * 2);
-            font-weight: 600;
-            font-size: 1.75rem;
-        }
+      /* 头部样式 */
+      .site-header {
+        background-color: var(--card-background);
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        height: var(--header-height);
+      }
 
+      .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+      }
+
+      .logo i {
+        margin-right: 0.5rem;
+        font-size: 1.75rem;
+      }
+
+      .main-nav {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .main-nav a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--border-radius-sm);
+        transition: all var(--transition-normal);
+      }
+
+      .main-nav a:hover {
+        color: var(--primary-color);
+        background-color: var(--primary-light);
+      }
+
+      .main-nav a.active {
+        color: var(--primary-color);
+        background-color: var(--primary-light);
+        font-weight: 600;
+      }
+
+      /* 英雄区域 */
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-color) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+        padding: 5rem 0;
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .hero-content h1 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .hero-content .accent {
+        color: var(--secondary-color);
+      }
+
+      .subtitle {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+      }
+
+      /* 主内容区 */
+      .main-content {
+        flex: 1;
+        padding-bottom: 4rem;
+      }
+
+      .content-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: var(--text-dark);
+        position: relative;
+        padding-left: 1rem;
+      }
+
+      .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.25rem;
+        bottom: 0.25rem;
+        width: 4px;
+        background-color: var(--primary-color);
+        border-radius: 2px;
+      }
+
+      .view-controls {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .view-btn {
+        background: none;
+        border: none;
+        color: var(--text-light);
+        font-size: 1.25rem;
+        padding: 0.5rem;
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        transition: all var(--transition-normal);
+      }
+
+      .view-btn:hover {
+        color: var(--primary-color);
+        background-color: var(--primary-light);
+      }
+
+      .view-btn.active {
+        color: var(--primary-color);
+        background-color: var(--primary-light);
+      }
+
+      /* 资源卡片网格 */
+      .resource-grid {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+        transition: all var(--transition-normal);
+      }
+
+      /* 列表视图样式 */
+      .resource-grid.list-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-grid.list-layout .resource-card {
+        display: flex;
+        flex-direction: row;
+        height: 160px;
+      }
+
+      .resource-grid.list-layout .card-top {
+        width: 280px;
+        flex-shrink: 0;
+      }
+
+      .resource-grid.list-layout .card-image,
+      .resource-grid.list-layout .card-image.no-image {
+        height: 100%;
+        padding-top: 0;
+      }
+
+      .resource-grid.list-layout .card-content {
+        text-align: left;
+        align-items: flex-start;
+        padding: 1.5rem;
+      }
+
+      /* 资源卡片 */
+      .resource-card {
+        background-color: var(--card-background);
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+        overflow: hidden;
+        transition: all var(--transition-normal);
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .resource-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--card-hover-shadow);
+      }
+
+      .card-top {
+        position: relative;
+      }
+
+      .card-image {
+        position: relative;
+        padding-top: 56.25%; /* 16:9 比例 */
+        background-color: #f1f5f9;
+        overflow: hidden;
+      }
+
+      .card-image.no-image {
+        background-color: var(--primary-light);
+        padding-top: 56.25%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .placeholder-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        color: var(--primary-color);
+        opacity: 0.7;
+      }
+
+      .cover-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.5s ease;
+      }
+
+      .resource-card:hover .cover-image {
+        transform: scale(1.05);
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity var(--transition-normal);
+      }
+
+      .resource-card:hover .overlay {
+        opacity: 1;
+      }
+
+      .btn-view {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transform: translateY(10px);
+        opacity: 0;
+        transition: all 0.3s ease 0.1s;
+      }
+
+      .resource-card:hover .btn-view {
+        transform: translateY(0);
+        opacity: 1;
+      }
+
+      .btn-view:hover {
+        background-color: var(--primary-dark);
+      }
+
+      .card-content {
+        padding: 1.5rem;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 0.75rem;
+        color: var(--text-dark);
+        line-height: 1.4;
+      }
+
+      .card-meta {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        color: var(--text-light);
+        font-size: 0.875rem;
+      }
+
+      .meta-item {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+      }
+
+      /* 空状态 */
+      .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        background-color: var(--card-background);
+        border-radius: var(--border-radius);
+        box-shadow: var(--card-shadow);
+      }
+
+      .empty-icon {
+        font-size: 4rem;
+        color: var(--text-light);
+        margin-bottom: 1.5rem;
+        opacity: 0.7;
+      }
+
+      .empty-state h2 {
+        font-size: 1.75rem;
+        color: var(--text-dark);
+        margin-bottom: 1rem;
+      }
+
+      .empty-state p {
+        color: var(--text-light);
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      /* 页脚 */
+      .site-footer {
+        background-color: var(--card-background);
+        border-top: 1px solid var(--border-color);
+        padding: 2rem 0;
+        margin-top: auto;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .footer-content p {
+        color: var(--text-light);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .footer-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        transition: color var(--transition-normal);
+      }
+
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+
+      /* 响应式设计 */
+      @media (min-width: 640px) {
         .resource-grid {
-            display: grid;
-            gap: calc(var(--spacing-unit) * 1.5);
-            grid-template-columns: 1fr; /* Mobile: single column */
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .resource-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      @media (min-width: 1280px) {
+        .resource-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 2.25rem;
         }
 
-        .resource-card {
-            background-color: var(--card-background);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
-            overflow: hidden; /* Ensure content stays within rounded corners */
-            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-            display: flex;
-            flex-direction: column;
+        .resource-grid.list-layout .resource-card {
+          flex-direction: column;
+          height: auto;
         }
 
-        .resource-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15);
+        .resource-grid.list-layout .card-top {
+          width: 100%;
         }
 
-        .card-content {
-            padding: calc(var(--spacing-unit) * 1.5);
-            flex-grow: 1; /* Allow content to push footer down */
-            display: flex;
-            flex-direction: column;
-            justify-content: center; /* Center content vertically */
-             align-items: center; /* Center content horizontally */
-             text-align: center;
+        .resource-grid.list-layout .card-image {
+          padding-top: 56.25%;
         }
 
-        .card-icon {
-            font-size: 2.5rem; /* Larger icon */
-            color: var(--primary-color);
-            margin-bottom: var(--spacing-unit);
+        .footer-content {
+          flex-direction: column;
+          text-align: center;
         }
+      }
 
-        .card-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 0; /* Remove bottom margin if link provides spacing */
-            color: var(--text-color);
+      /* 动画效果 */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
         }
-
-        .card-link {
-            text-decoration: none;
-            color: var(--primary-color);
-            font-weight: 500;
-            margin-top: var(--spacing-unit); /* Add space above the link */
-            display: inline-block; /* Allow margin */
-            transition: color 0.2s ease;
+        to {
+          opacity: 1;
         }
-        .card-link:hover, .card-link:focus {
-             color: var(--primary-hover-color);
-             text-decoration: underline;
-             outline: none;
+      }
+
+      @keyframes slideUp {
+        from {
+          transform: translateY(20px);
+          opacity: 0;
         }
-
-         /* Optional: Add subtle footer or file info */
-         .card-footer {
-             background-color: #f1f3f5; /* Light grey footer */
-             padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
-             font-size: 0.8rem;
-             color: var(--muted-text-color);
-             text-align: center;
-             border-top: 1px solid var(--border-color);
-         }
-
-
-        .no-resources {
-            text-align: center;
-            color: var(--muted-text-color);
-            padding: calc(var(--spacing-unit) * 2);
-            background-color: var(--card-background);
-            border-radius: var(--border-radius);
-            box-shadow: var(--box-shadow);
+        to {
+          transform: translateY(0);
+          opacity: 1;
         }
-
-        /* Desktop adjustments */
-        @media (min-width: 576px) {
-            h1 {
-                font-size: 2rem;
-            }
-            .resource-grid {
-                /* 2 columns on small screens */
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 992px) {
-            .resource-grid {
-                /* 3 columns on large screens */
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-         @media (min-width: 1200px) {
-             .resource-grid {
-                 /* 4 columns on extra-large screens */
-                 grid-template-columns: repeat(4, 1fr);
-             }
-         }
-
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Explore Our Resources</h1>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-container">
+        <div class="logo">
+          <i class="fas fa-book-open"></i>
+          <span>阅读管理</span>
+        </div>
+        <nav class="main-nav">
+          <a href="#" class="active">首页</a>
+          <a href="{{ url_for('login') }}">管理入口</a>
+        </nav>
+      </div>
+    </header>
 
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-content animate__animated animate__fadeIn">
+          <h1>发现精彩<span class="accent">阅读</span>内容</h1>
+          <p class="subtitle">探索知识的海洋，尽在指尖</p>
+        </div>
+      </div>
+    </section>
+
+    <main class="main-content">
+      <div class="container">
         {% if pages %}
-            <div class="resource-grid">
-                {% for page in pages %}
-                    <div class="resource-card">
-                        <div class="card-content">
-                            <i class="fas fa-file-alt card-icon"></i> <!-- Generic file icon -->
-                            <h2 class="card-title">{{ page.path | replace('-', ' ') | title }}</h2> <!-- Make path more readable -->
-                            <a href="{{ url_for('serve_uploaded_page', page_name=page.path) }}" class="card-link" target="_blank">
-                                View Page <i class="fas fa-external-link-alt fa-xs"></i> <!-- External link icon -->
-                            </a>
-                        </div>
-                        <!-- Optional Footer -->
-                        <!--
-                        <div class="card-footer">
-                            File: {{ page.filename }}
-                        </div>
-                         -->
-                    </div>
-                {% endfor %}
+        <div class="content-header">
+          <h2 class="section-title">精选内容</h2>
+          <div class="view-controls">
+            <button class="view-btn grid-view active" title="网格视图">
+              <i class="fas fa-th-large"></i>
+            </button>
+            <button class="view-btn list-view" title="列表视图">
+              <i class="fas fa-list"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="resource-grid">
+          {% for page in pages %}
+          <div
+            class="resource-card animate__animated animate__fadeInUp"
+            style="animation-delay: {{ loop.index0 * 0.1 }}s"
+          >
+            <div class="card-top">
+              {% if page.cover %}
+              <div class="card-image">
+                <img
+                  src="{{ url_for('serve_cover', filename=page.cover) }}"
+                  alt="{{ page.title or page.path }}"
+                  class="cover-image"
+                />
+                <div class="overlay">
+                  <a
+                    href="{{ url_for('serve_uploaded_page', page_name=page.path) }}"
+                    class="btn-view"
+                    target="_blank"
+                  >
+                    <i class="fas fa-eye"></i> 阅读
+                  </a>
+                </div>
+              </div>
+              {% else %}
+              <div class="card-image no-image">
+                <div class="placeholder-icon">
+                  <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="overlay">
+                  <a
+                    href="{{ url_for('serve_uploaded_page', page_name=page.path) }}"
+                    class="btn-view"
+                    target="_blank"
+                  >
+                    <i class="fas fa-eye"></i> 阅读
+                  </a>
+                </div>
+              </div>
+              {% endif %}
             </div>
+            <div class="card-content">
+              <h3 class="card-title">
+                {{ page.title or (page.path | replace('-', ' ') | title) }}
+              </h3>
+              <div class="card-meta">
+                <span class="meta-item">
+                  <i class="fas fa-clock"></i> 最近更新
+                </span>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
         {% else %}
-            <p class="no-resources">No resources available at the moment. Please check back later!</p>
+        <div class="empty-state animate__animated animate__fadeIn">
+          <div class="empty-icon">
+            <i class="fas fa-inbox"></i>
+          </div>
+          <h2>暂无内容</h2>
+          <p>当前没有可用的阅读资源，请稍后再来查看！</p>
+        </div>
         {% endif %}
-    </div>
-</body>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy; 2025 阅读管理系统 - 让阅读更美好</p>
+          <div class="footer-links">
+            <a href="#">关于我们</a>
+            <a href="#">使用条款</a>
+            <a href="#">隐私政策</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        // 视图切换功能
+        const gridViewBtn = document.querySelector('.grid-view');
+        const listViewBtn = document.querySelector('.list-view');
+        const resourceGrid = document.querySelector('.resource-grid');
+
+        if (gridViewBtn && listViewBtn && resourceGrid) {
+          gridViewBtn.addEventListener('click', function () {
+            resourceGrid.classList.remove('list-layout');
+            gridViewBtn.classList.add('active');
+            listViewBtn.classList.remove('active');
+            localStorage.setItem('preferredView', 'grid');
+          });
+
+          listViewBtn.addEventListener('click', function () {
+            resourceGrid.classList.add('list-layout');
+            listViewBtn.classList.add('active');
+            gridViewBtn.classList.remove('active');
+            localStorage.setItem('preferredView', 'list');
+          });
+
+          // 恢复用户偏好
+          const preferredView = localStorage.getItem('preferredView');
+          if (preferredView === 'list') {
+            resourceGrid.classList.add('list-layout');
+            listViewBtn.classList.add('active');
+            gridViewBtn.classList.remove('active');
+          }
+        }
+      });
+    </script>
+  </body>
 </html>

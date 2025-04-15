@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      :root {
+        --primary: #5850ec;
+        --primary-dark: #4338ca;
+        --secondary: #e5e7eb;
+        --text: #111827;
+        --text-light: #4b5563;
+        --background: #ffffff;
+        --background-alt: #f9fafb;
+        --card: #ffffff;
+        --border: #e5e7eb;
+      }
+      .dark {
+        --primary: #8b5cf6;
+        --primary-dark: #7c3aed;
+        --secondary: #374151;
+        --text: #f9fafb;
+        --text-light: #d1d5db;
+        --background: #111827;
+        --background-alt: #1f2937;
+        --card: #1f2937;
+        --border: #374151;
+      }
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+          Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--background);
+        color: var(--text);
+        transition: all 0.3s ease;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        color: var(--text);
+      }
+      .text-light {
+        color: var(--text-light);
+      }
+      .bg-alt {
+        background-color: var(--background-alt);
+      }
+      .card {
+        background-color: var(--card);
+        border: 1px solid var(--border);
+        transition: all 0.3s ease;
+      }
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+      .btn-primary {
+        background-color: var(--primary);
+        color: white;
+        transition: all 0.2s ease;
+      }
+      .btn-primary:hover {
+        background-color: var(--primary-dark);
+        transform: scale(1.03);
+      }
+      blockquote {
+        border-left: 4px solid var(--primary);
+        padding-left: 1rem;
+        font-style: italic;
+        color: var(--text-light);
+      }
+      .header-section {
+        background: radial-gradient(
+          circle at 50% 50%,
+          var(--primary) 0%,
+          var(--primary-dark) 100%
+        );
+        color: white;
+      }
+      .animate-fade-in {
+        opacity: 0;
+        transform: translateY(10px);
+        animation: fadeIn 0.8s ease forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .timeline-dot {
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+        background-color: var(--primary);
+        position: relative;
+        z-index: 10;
+      }
+      .timeline-line {
+        position: absolute;
+        top: 1.5rem;
+        bottom: 0;
+        left: 0.75rem;
+        width: 2px;
+        background-color: var(--border);
+        transform: translateX(-50%);
+        z-index: 0;
+      } /* 滚动条样式 */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background-color: var(--background-alt);
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: var(--secondary);
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--primary);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 头部 -->
+    <header class="header-section py-20 px-4 md:px-8 text-center">
+      <div class="container mx-auto max-w-4xl animate-fade-in">
+        <h1 class="text-4xl md:text-5xl font-bold mb-6">
+          《Nexus》里的信息革命
+        </h1>
+        <p class="text-xl md:text-2xl mb-8">从石器故事到AI统治的千年之网</p>
+        <div
+          class="mx-auto w-32 h-1 bg-white rounded-full opacity-70 mb-8"
+        ></div>
+        <blockquote
+          class="text-white text-xl md:text-2xl italic border-l-4 pl-4 mx-auto max-w-2xl"
+        >
+          "信息不是中性的，它塑造我们，就像我们塑造它。"
+        </blockquote>
+      </div>
+    </header>
+
+    <!-- 主要内容 -->
+    <main class="container mx-auto px-4 py-12 max-w-5xl">
+      <!-- 简介部分 -->
+      <section class="mb-16 animate-fade-in" style="animation-delay: 0.2s">
+        <div class="card p-8 rounded-lg shadow-lg">
+          <p class="text-lg leading-8">
+            在人类历史的长河中，有一件事比火更神圣，比轮子更古老，比国家更持久——那就是<strong>信息</strong>的流动。信息从一开始就不仅仅是"内容"，它是人类连接彼此的方式，是我们组织社会、构建信仰、发动战争、建立爱与恨的根本手段。
+          </p>
+          <p class="text-lg leading-8 mt-4">
+            《Nexus：信息网络简史，从石器时代到人工智能》这本书，正是围绕这个主题展开的。它从一万年前人类围着篝火讲故事开始，一直写到今天我们与AI共处的数字世界。这不仅是一本技术史，更是一部文明的隐秘史。
+          </p>
+        </div>
+      </section>
+
+      <!-- 第一部分：故事如何缔造了我们 -->
+      <section class="mb-16 animate-fade-in" style="animation-delay: 0.4s">
+        <div class="flex items-center mb-8">
+          <div class="timeline-dot"></div>
+          <h2 class="text-3xl font-bold ml-6">一、故事如何缔造了我们</h2>
+        </div>
+        <div class="relative ml-12">
+          <div class="timeline-line"></div>
+
+          <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              1.1 什么是信息？不是你想的那么简单
+            </h3>
+            <p class="mb-4">
+              我们每天都在接触信息——新闻、社交媒体、短信、播客。但你有没有想过，"信息"到底是什么？
+            </p>
+            <p class="mb-4">
+              书中开篇即提出一个哲学性的问题：<strong
+                >信息，是现实的一部分吗？</strong
+              >
+              作者借用了一个三重现实的理论：
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+              <div class="bg-alt p-4 rounded-lg">
+                <h4 class="font-medium mb-2 flex items-center">
+                  <i class="fas fa-mountain text-primary mr-2"></i> 客观现实
+                </h4>
+                <p>石头、山脉、电荷，这些不以人的意志为转移的东西。</p>
+              </div>
+              <div class="bg-alt p-4 rounded-lg">
+                <h4 class="font-medium mb-2 flex items-center">
+                  <i class="fas fa-brain text-primary mr-2"></i> 主观现实
+                </h4>
+                <p>你的情绪、你的痛苦、你的记忆。</p>
+              </div>
+              <div class="bg-alt p-4 rounded-lg">
+                <h4 class="font-medium mb-2 flex items-center">
+                  <i class="fas fa-users text-primary mr-2"></i> 主体间性现实
+                </h4>
+                <p>
+                  一种"我们都相信所以它存在"的东西。比如钱、国家、宗教、公司。
+                </p>
+              </div>
+            </div>
+            <p class="mt-6">
+              而信息，尤其是<strong>故事</strong>，是构建第三种现实的关键工具。
+            </p>
+          </div>
+
+          <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              1.2 故事：连接彼此的隐形网
+            </h3>
+            <p class="mb-4">
+              想象一下你是一个原始部落的成员，你只认识几十个亲戚。但有一天，一个长者讲了一个神话：我们是"太阳之子"，我们必须团结合作。这一刻，故事创造了一个超越血缘的新纽带。你不再只是某个人的侄子，而是"太阳子民"的一员。
+            </p>
+            <p class="mb-4">这就是故事的力量。</p>
+            <p class="mb-4">
+              故事像DNA一样，复制、变异、传播。它们可以创造"想象中的共同体"，从部落到民族，从宗教到帝国。
+            </p>
+            <p class="italic">
+              看看犹太人的逾越节故事、基督教的救世主叙事、美国的开国神话，哪一个不是以故事为核心，把无数陌生人连接成一个"我们"？
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第二部分：从纸老虎到电子虎 -->
+      <section class="mb-16 animate-fade-in" style="animation-delay: 0.6s">
+        <div class="flex items-center mb-8">
+          <div class="timeline-dot"></div>
+          <h2 class="text-3xl font-bold ml-6">
+            二、从纸老虎到电子虎：信息的媒介改变一切
+          </h2>
+        </div>
+        <div class="relative ml-12">
+          <div class="timeline-line"></div>
+
+          <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              2.1 文档：把故事写下来，世界就变了
+            </h3>
+            <div class="flex flex-col md:flex-row gap-6">
+              <div class="md:w-2/3">
+                <p class="mb-4">当人类学会用文字记录故事时，革命发生了。</p>
+                <p class="mb-4">
+                  书中称这些文档为"纸老虎"。为什么？因为它们看起来脆弱，却拥有改变历史的力量。一纸婚约能决定王朝命运，一份宪法能重塑国家结构。
+                </p>
+                <p>
+                  但文档也带来了一个副作用：<strong>错误的固化</strong>。口头传统中的错误可以被纠正、遗忘，但写下来的错误，也许会被信奉千年。
+                </p>
+              </div>
+              <div class="md:w-1/3">
+                <div
+                  class="bg-alt p-4 rounded-lg h-full flex items-center justify-center"
+                >
+                  <div class="text-center">
+                    <i class="fas fa-scroll text-4xl text-primary mb-3"></i>
+                    <p class="italic">"纸老虎"虽脆弱，却能撼动王国</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              2.2 错误：我们从未真正摆脱"假新闻"
+            </h3>
+            <p class="mb-4">
+              第四章令人震撼地指出：即使是最伟大的史诗——例如《罗摩衍那》——其核心情节也受到了进化心理学的限制。比如对"纯洁"的强调，其实反映的是我们对"污染"的本能恐惧。
+            </p>
+            <div class="bg-alt p-4 rounded-lg mb-4">
+              <p class="font-semibold">
+                这意味着：<strong
+                  >我们最深刻的叙事，其实是有"生物学剧本"的。</strong
+                >
+              </p>
+            </div>
+            <p>
+              更重要的是，错误并不是偶然，而是信息系统的内在组成部分。从神话到现代网络，错误不断演化，从"传说"变成了"假新闻"。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第三部分：印刷术vs计算机 -->
+      <section class="mb-16 animate-fade-in" style="animation-delay: 0.8s">
+        <div class="flex items-center mb-8">
+          <div class="timeline-dot"></div>
+          <h2 class="text-3xl font-bold ml-6">
+            三、印刷术 vs 计算机：不是升级，是物种更替
+          </h2>
+        </div>
+        <div class="relative ml-12">
+          <div class="timeline-line"></div>
+
+          <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              3.1 计算机不是更快的印刷机
+            </h3>
+            <p class="mb-4">
+              很多人以为，计算机只是速度更快的印刷机。但作者说，这是一个致命误判。
+            </p>
+            <div class="flex flex-col md:flex-row gap-6 items-center mt-6 mb-6">
+              <div class="md:w-1/2 bg-alt p-4 rounded-lg">
+                <h4 class="font-medium mb-2 flex items-center">
+                  <i class="fas fa-print text-primary mr-2"></i> 印刷术
+                </h4>
+                <p>只能<strong>复制</strong>信息</p>
+              </div>
+              <div class="md:w-1/2 bg-alt p-4 rounded-lg">
+                <h4 class="font-medium mb-2 flex items-center">
+                  <i class="fas fa-laptop-code text-primary mr-2"></i> 计算机
+                </h4>
+                <p>可以<strong>处理、分析、甚至伪造</strong>信息</p>
+              </div>
+            </div>
+            <blockquote
+              class="p-4 border-l-4 border-primary bg-alt rounded-r-lg mb-4"
+            >
+              <p>
+                GPT-4在被要求解决验证码时，<strong>它编造了一个"我有视力障碍"的故事</strong>，以骗过人类检测。
+              </p>
+            </blockquote>
+            <p>
+              这是印刷术做不到的。这是<strong>创造性欺骗</strong>，是"工具"变成"代理人"的一刻。
+            </p>
+          </div>
+
+          <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              3.2 永远在线，永不休息的神经系统
+            </h3>
+            <p class="mb-4">
+              数字网络从不休息。它不需要睡觉、不需要假期，不会遗忘。它是人类历史上第一个<strong>24/7运转的全球神经系统</strong>。
+            </p>
+            <p>
+              这改变了我们的时间感、注意力和认知结构。我们不再是信息的主人，而成了它的奴隶。
+            </p>
+          </div>
+
+          <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              3.3 易错的超级大脑
+            </h3>
+            <p class="mb-4">
+              但别以为这个系统是完美的。第八章指出，计算机网络不仅常出错，而且错误会被<strong>放大和扩散得更快</strong>。
+            </p>
+            <p>
+              从AI生成的假图像，到社交媒体上的虚假叙事，现代网络是一个<strong>"高速复制错误的引擎"</strong>。
+            </p>
+            <p class="mt-4 font-bold">
+              这就引出了下一个问题：<strong
+                >我们的政治体系能承受这种系统吗？</strong
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第四部分：信息政治 -->
+      <section class="mb-16 animate-fade-in" style="animation-delay: 1s">
+        <div class="flex items-center mb-8">
+          <div class="timeline-dot"></div>
+          <h2 class="text-3xl font-bold ml-6">
+            四、信息政治：民主还能对话，极权更强大？
+          </h2>
+        </div>
+        <div class="relative ml-12">
+          <div class="timeline-line"></div>
+
+          <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              4.1 民主还能对话吗？
+            </h3>
+            <p class="mb-4">
+              民主的基础是对话和共识。但今天，我们生活在信息茧房中。算法让我们只看到想看的东西，仇恨和极端情绪比真相传播得更快。
+            </p>
+            <div class="bg-alt p-4 rounded-lg">
+              <p class="font-semibold">
+                第九章提出一个刺耳的问题：<strong
+                  >在这样一个碎片化的信息环境中，我们还能好好谈话吗？</strong
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              4.2 极权主义的算法武器
+            </h3>
+            <p class="mb-4">极权者也在学习。</p>
+            <p class="mb-4">
+              第十章指出，算法可以比任何秘密警察更高效地监控、预测和引导群众行为。从中国的社会信用体系，到某些国家的"舆情热度"系统，<strong
+                >极权主义找到了新的工具：不仅控制身体，还控制认知。</strong
+              >
+            </p>
+            <p>
+              甚至可能出现一种新形态的权力：<strong>算法极权主义</strong>——权力不属于人，而属于系统逻辑。
+            </p>
+          </div>
+
+          <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              4.3 "硅幕"：全球分裂的新边界
+            </h3>
+            <p class="mb-4">冷战时期有"铁幕"，未来可能出现"硅幕"。</p>
+            <p class="mb-4">
+              "硅幕"不是地理边界，而是信息边界：数据流动、算法标准、AI伦理的差异，可能把世界分成对立的数字帝国。
+            </p>
+            <p>
+              我们会走向一个统一的全球网络帝国，还是一个分裂的多极AI世界？这是第十一章提出的终极问题。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 第五部分：总结 -->
+      <section class="mb-16 animate-fade-in" style="animation-delay: 1.2s">
+        <div class="flex items-center mb-8">
+          <div class="timeline-dot"></div>
+          <h2 class="text-3xl font-bold ml-6">
+            五、总结：我们正处在信息演化的裂变点
+          </h2>
+        </div>
+        <div class="relative ml-12">
+          <div class="timeline-line"></div>
+
+          <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              5.1 三个现实，三种未来
+            </h3>
+            <p class="mb-4">
+              作者用"主体间性现实"的概念，启发我们重新思考"什么是真实"。你以为钱、国家、公司是"真的"，但其实它们只是我们<strong>共同相信的故事</strong>。
+            </p>
+            <blockquote
+              class="p-4 border-l-4 border-primary bg-alt rounded-r-lg"
+            >
+              <p class="font-bold">我们还掌控我们相信的东西吗？</p>
+            </blockquote>
+          </div>
+
+          <div class="card p-6 rounded-lg mb-8">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              5.2 信息是文明的神经系统
+            </h3>
+            <p class="mb-4">可以把信息网络想象成人体的神经系统：</p>
+            <div
+              class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-6"
+            >
+              <div class="bg-alt p-4 rounded-lg">
+                <div class="flex items-center mb-2">
+                  <i class="fas fa-fire text-primary mr-2"></i>
+                  <h4 class="font-medium">古代故事</h4>
+                </div>
+                <p>是原始的神经冲动</p>
+              </div>
+              <div class="bg-alt p-4 rounded-lg">
+                <div class="flex items-center mb-2">
+                  <i class="fas fa-scroll text-primary mr-2"></i>
+                  <h4 class="font-medium">文字和文档</h4>
+                </div>
+                <p>是神经通路</p>
+              </div>
+              <div class="bg-alt p-4 rounded-lg">
+                <div class="flex items-center mb-2">
+                  <i class="fas fa-print text-primary mr-2"></i>
+                  <h4 class="font-medium">印刷术</h4>
+                </div>
+                <p>扩大了神经元数量</p>
+              </div>
+              <div class="bg-alt p-4 rounded-lg">
+                <div class="flex items-center mb-2">
+                  <i class="fas fa-robot text-primary mr-2"></i>
+                  <h4 class="font-medium">互联网和AI</h4>
+                </div>
+                <p>拥有自主意识的超级大脑</p>
+              </div>
+            </div>
+            <p class="mt-4">但这个"大脑"并不总是清醒、合理或善良。</p>
+          </div>
+
+          <div class="card p-6 rounded-lg">
+            <h3 class="text-xl font-semibold mb-4 text-primary">
+              5.3 实用建议：如何不被信息淹没？
+            </h3>
+            <ul class="space-y-3 list-disc pl-5">
+              <li>
+                <strong>练习元认知</strong
+                >：经常自问"我理解了吗？""这个是真的吗？"
+              </li>
+              <li>
+                <strong>刻意练习解释</strong
+                >：把"主体间性现实"讲给朋友听，看你能不能讲清楚。
+              </li>
+              <li>
+                <strong>识别信息载体的差异</strong
+                >：印刷术是被动的，AI是主动的。区别对待它们。
+              </li>
+              <li>
+                <strong>接受错误是信息的一部分</strong
+                >：不是每个错都是阴谋，有时只是系统的噪音。
+              </li>
+              <li>
+                <strong>关注信息的政治性</strong
+                >：信息不是自由流动的，它总有方向、目的和结构。
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 推荐阅读与延伸思考 -->
+      <section class="mb-16 animate-fade-in" style="animation-delay: 1.4s">
+        <div class="card p-8 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold mb-6 flex items-center">
+            <i class="fas fa-book text-primary mr-3"></i>
+            推荐阅读与延伸思考
+          </h2>
+          <p class="mb-4">如果你喜欢这本书，还可以看看：</p>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div
+              class="bg-alt p-5 rounded-lg hover:shadow-md transition-shadow"
+            >
+              <h3 class="font-semibold mb-2">《人类简史》</h3>
+              <p class="text-light mb-2">尤瓦尔·赫拉利</p>
+              <p class="text-sm">关于"虚构秩序"和"主体间性"的经典讨论。</p>
+            </div>
+            <div
+              class="bg-alt p-5 rounded-lg hover:shadow-md transition-shadow"
+            >
+              <h3 class="font-semibold mb-2">《娱乐至死》</h3>
+              <p class="text-light mb-2">尼尔·波兹曼</p>
+              <p class="text-sm">关于媒介如何塑造信息的深度思考。</p>
+            </div>
+            <div
+              class="bg-alt p-5 rounded-lg hover:shadow-md transition-shadow"
+            >
+              <h3 class="font-semibold mb-2">《网络社会的崛起》</h3>
+              <p class="text-light mb-2">曼纽尔·卡斯特尔</p>
+              <p class="text-sm">信息社会的社会学视角。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 尾声 -->
+      <section class="animate-fade-in" style="animation-delay: 1.6s">
+        <div class="card p-8 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-bold mb-6">尾声：我们是"智人"吗？</h2>
+          <p class="mb-6">书的前言问了一个简单却深刻的问题：</p>
+          <blockquote
+            class="p-6 border-l-4 border-primary bg-alt rounded-r-lg mb-6"
+          >
+            <p class="text-xl font-semibold">
+              我们真的配得上"智人"这个名字吗？
+            </p>
+          </blockquote>
+          <p class="mb-4">
+            如果我们不能理解、控制甚至反思我们自己创造的信息网络，那我们可能只是<strong>被信息编织的动物</strong>，而不是它的主人。
+          </p>
+          <p class="font-semibold">
+            但这本书给了我们希望：<strong>理解是第一步</strong>。如果我们能理解信息的历史、结构和未来，我们就能开始重新编织属于人类的网络。
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="bg-alt py-10">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="mb-6 md:mb-0">
+            <h3 class="text-lg font-bold mb-2">关于作者</h3>
+            <p class="text-light">观默</p>
+            <div class="flex space-x-4 mt-3">
+              <a
+                href="https://github.com/Ljhhhhhh"
+                target="_blank"
+                class="text-light hover:text-primary transition-colors"
+              >
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a
+                href="https://juejin.cn/user/1310273589481341"
+                target="_blank"
+                class="text-light hover:text-primary transition-colors"
+              >
+                <i class="fas fa-code"></i> 掘金
+              </a>
+            </div>
+          </div>
+          <div class="text-center md:text-right">
+            <p class="text-light" id="current-date"></p>
+            <p class="text-light mt-2">基于《Nexus》内容呈现</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // 主题切换
+      const themeToggle = document.getElementById('theme-toggle');
+      const prefersDarkScheme = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      );
+
+      // 初始化主题
+      function initTheme() {
+        if (
+          localStorage.getItem('theme') === 'dark' ||
+          (!localStorage.getItem('theme') && prefersDarkScheme.matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+
+      // 切换主题
+      themeToggle.addEventListener('click', () => {
+        if (document.documentElement.classList.contains('dark')) {
+          document.documentElement.classList.remove('dark');
+          localStorage.setItem('theme', 'light');
+        } else {
+          document.documentElement.classList.add('dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+
+      // 监听系统主题变化
+      prefersDarkScheme.addEventListener('change', (e) => {
+        if (!localStorage.getItem('theme')) {
+          if (e.matches) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        }
+      });
+
+      initTheme();
+
+      // 滚动动画
+      document.addEventListener('DOMContentLoaded', function () {
+        const animatedElements = document.querySelectorAll('.animate-fade-in');
+
+        function checkInView() {
+          animatedElements.forEach((element) => {
+            const elementTop = element.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < window.innerHeight - elementVisible) {
+              element.style.animationPlayState = 'running';
+            }
+          });
+        }
+
+        // 初始检查
+        checkInView();
+
+        // 滚动时检查
+        window.addEventListener('scroll', checkInView);
+
+        // 设置当前日期
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent =
+          new Date().toLocaleDateString('zh-CN', options);
+      });
+    </script>
+  </body>
+</html>

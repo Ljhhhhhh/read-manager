@@ -204,15 +204,24 @@
             <h2>Upload New Page</h2>
             <form method="post" action="{{ url_for('admin') }}" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="html_file">HTML File</label>
+                    <label for="article_title">文章标题</label>
+                    <input type="text" id="article_title" name="article_title" placeholder="输入文章标题" required>
+                </div>
+                <div class="form-group">
+                    <label for="article_cover">文章封面</label>
+                    <input type="file" id="article_cover" name="article_cover" accept="image/*">
+                    <small>推荐尺寸：800x450 像素</small>
+                </div>
+                <div class="form-group">
+                    <label for="html_file">HTML 文件</label>
                     <input type="file" id="html_file" name="html_file" accept=".html,.htm" required>
                 </div>
                 <div class="form-group">
-                    <label for="path_name">Access Path Name (e.g., my-cool-page)</label>
-                    <input type="text" id="path_name" name="path_name" placeholder="Leave blank to use filename">
-                    <small>Use only letters, numbers, hyphens. Example: /page/my-cool-page</small>
+                    <label for="path_name">访问路径 (例如：my-cool-page)</label>
+                    <input type="text" id="path_name" name="path_name" placeholder="留空将使用文件名">
+                    <small>仅使用字母、数字和连字符。示例：/page/my-cool-page</small>
                 </div>
-                <button type="submit" name="action" value="upload" class="btn btn-primary">Upload Page</button>
+                <button type="submit" name="action" value="upload" class="btn btn-primary">上传页面</button>
             </form>
         </div>
 
@@ -224,7 +233,7 @@
                         <li class="page-item">
                             <div class="page-info">
                                 <a href="{{ url_for('serve_uploaded_page', page_name=page.path) }}" target="_blank">/page/{{ page.path }}</a>
-                                <span>(File: {{ page.filename }})</span>
+                                <span>{% if page.title %}{{ page.title }}{% else %}(File: {{ page.filename }}){% endif %}</span>
                             </div>
                             <form method="post" action="{{ url_for('admin') }}" style="display: inline;">
                                 <input type="hidden" name="filename_to_delete" value="{{ page.filename }}">
