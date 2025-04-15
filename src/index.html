@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Resources</title>
+    <!-- Add Font Awesome for icons (Optional but recommended for visual appeal) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-hover-color: #0056b3;
+            --background-color: #f8f9fa;
+            --card-background: #ffffff;
+            --text-color: #212529;
+            --muted-text-color: #6c757d;
+            --border-color: #dee2e6;
+            --box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+            --border-radius: 0.5rem; /* 8px */
+            --spacing-unit: 1rem; /* 16px */
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: var(--spacing-unit);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px; /* Allow wider container for grid */
+            margin: var(--spacing-unit) auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            margin-top: 0;
+            margin-bottom: calc(var(--spacing-unit) * 2);
+            font-weight: 600;
+            font-size: 1.75rem;
+        }
+
+        .resource-grid {
+            display: grid;
+            gap: calc(var(--spacing-unit) * 1.5);
+            grid-template-columns: 1fr; /* Mobile: single column */
+        }
+
+        .resource-card {
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden; /* Ensure content stays within rounded corners */
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15);
+        }
+
+        .card-content {
+            padding: calc(var(--spacing-unit) * 1.5);
+            flex-grow: 1; /* Allow content to push footer down */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Center content vertically */
+             align-items: center; /* Center content horizontally */
+             text-align: center;
+        }
+
+        .card-icon {
+            font-size: 2.5rem; /* Larger icon */
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-unit);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 0;
+            margin-bottom: 0; /* Remove bottom margin if link provides spacing */
+            color: var(--text-color);
+        }
+
+        .card-link {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-top: var(--spacing-unit); /* Add space above the link */
+            display: inline-block; /* Allow margin */
+            transition: color 0.2s ease;
+        }
+        .card-link:hover, .card-link:focus {
+             color: var(--primary-hover-color);
+             text-decoration: underline;
+             outline: none;
+        }
+
+         /* Optional: Add subtle footer or file info */
+         .card-footer {
+             background-color: #f1f3f5; /* Light grey footer */
+             padding: calc(var(--spacing-unit) * 0.75) calc(var(--spacing-unit) * 1.5);
+             font-size: 0.8rem;
+             color: var(--muted-text-color);
+             text-align: center;
+             border-top: 1px solid var(--border-color);
+         }
+
+
+        .no-resources {
+            text-align: center;
+            color: var(--muted-text-color);
+            padding: calc(var(--spacing-unit) * 2);
+            background-color: var(--card-background);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+        }
+
+        /* Desktop adjustments */
+        @media (min-width: 576px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .resource-grid {
+                /* 2 columns on small screens */
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .resource-grid {
+                /* 3 columns on large screens */
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+         @media (min-width: 1200px) {
+             .resource-grid {
+                 /* 4 columns on extra-large screens */
+                 grid-template-columns: repeat(4, 1fr);
+             }
+         }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Explore Our Resources</h1>
+
+        {% if pages %}
+            <div class="resource-grid">
+                {% for page in pages %}
+                    <div class="resource-card">
+                        <div class="card-content">
+                            <i class="fas fa-file-alt card-icon"></i> <!-- Generic file icon -->
+                            <h2 class="card-title">{{ page.path | replace('-', ' ') | title }}</h2> <!-- Make path more readable -->
+                            <a href="{{ url_for('serve_uploaded_page', page_name=page.path) }}" class="card-link" target="_blank">
+                                View Page <i class="fas fa-external-link-alt fa-xs"></i> <!-- External link icon -->
+                            </a>
+                        </div>
+                        <!-- Optional Footer -->
+                        <!--
+                        <div class="card-footer">
+                            File: {{ page.filename }}
+                        </div>
+                         -->
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-resources">No resources available at the moment. Please check back later!</p>
+        {% endif %}
+    </div>
+</body>
+</html>

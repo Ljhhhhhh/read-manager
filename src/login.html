@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Project Guanmo</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-hover-color: #0056b3;
+            --background-color: #f4f7f6;
+            --form-background: #ffffff;
+            --text-color: #333;
+            --label-color: #555;
+            --border-color: #ccc;
+            --error-color: #dc3545;
+            --success-color: #28a745;
+            --input-focus-border: #80bdff;
+            --input-focus-shadow: rgba(0, 123, 255, 0.25);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .login-container {
+            background-color: var(--form-background);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+            margin: 20px; /* Add margin for smaller screens */
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--text-color);
+            margin-top: 0; /* Remove default margin */
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 25px; /* Increased spacing */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--label-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px; /* Adjust padding */
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="password"]::placeholder {
+            color: #aaa; /* Lighter placeholder text */
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            border-color: var(--input-focus-border);
+            outline: none;
+            box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: 10px; /* Add space above button */
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--primary-hover-color);
+        }
+
+        .flash-messages {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0; /* Space below messages */
+        }
+
+        .flash-messages li {
+            padding: 12px 15px; /* Match input padding */
+            margin-bottom: 10px;
+            border-radius: 4px;
+            color: #fff;
+            text-align: center;
+            font-size: 0.95rem;
+        }
+
+        /* Default to error style (red) */
+        .flash-messages li {
+            background-color: var(--error-color);
+        }
+
+        /* Style for success messages (green) */
+        .flash-messages li.success {
+             background-color: var(--success-color);
+         }
+         /* Style for informational messages (blue) */
+         .flash-messages li.info {
+             background-color: var(--primary-color);
+         }
+         /* Style for warnings (yellow) */
+         .flash-messages li.warning {
+             background-color: #ffc107;
+             color: #333; /* Darker text for yellow bg */
+         }
+
+
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Welcome Back!</h1> <!-- More engaging title -->
+
+        {# Use get_flashed_messages with categories for better styling #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class=flash-messages>
+            {# Default category is 'message', use 'error' for invalid login #}
+            {% for category, message in messages %}
+              <li class="{{ category if category else 'error' }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <form method="post" action="{{ url_for('login') }}">
+            <div class="form-group">
+                <label for="username">Username</label> <!-- Simplified label -->
+                <input type="text" id="username" name="username" placeholder="e.g., lujiehui" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label> <!-- Simplified label -->
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <!-- Optional: Add links like "Forgot password?" or "Sign up" here if needed -->
+    </div>
+</body>
+</html>

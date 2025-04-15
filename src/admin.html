@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Pages</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-hover-color: #0056b3;
+            --secondary-color: #6c757d;
+            --secondary-hover-color: #5a6268;
+            --danger-color: #dc3545;
+            --danger-hover-color: #c82333;
+            --background-color: #f4f7f6;
+            --content-background: #ffffff;
+            --text-color: #333;
+            --label-color: #555;
+            --border-color: #ccc;
+            --input-focus-border: #80bdff;
+            --input-focus-shadow: rgba(0, 123, 255, 0.25);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 20px;
+            color: var(--text-color);
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: var(--content-background);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: var(--text-color);
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .form-section, .list-section {
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--label-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="text"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="file"]:focus {
+            border-color: var(--input-focus-border);
+            outline: none;
+            box-shadow: 0 0 0 3px var(--input-focus-shadow);
+        }
+
+        input[type="file"] {
+           padding: 8px 12px; /* Slightly different padding for file input */
+        }
+
+        button[type="submit"],
+        .btn {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-hover-color);
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+            color: white;
+            margin-left: 5px;
+        }
+        .btn-danger:hover {
+            background-color: var(--danger-hover-color);
+        }
+
+        .page-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .page-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .page-item:last-child {
+            border-bottom: none;
+        }
+
+        .page-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 15px;
+        }
+        .page-info a:hover {
+            text-decoration: underline;
+        }
+        .page-info span {
+            color: var(--label-color);
+            font-size: 0.9rem;
+        }
+
+        .flash-messages {
+             list-style: none;
+             padding: 0;
+             margin: 0 0 25px 0;
+         }
+
+        .flash-messages li {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 0.95rem;
+         }
+        .flash-messages li.success { background-color: var(--success-color, #28a745); }
+        .flash-messages li.error { background-color: var(--danger-color); }
+        .flash-messages li.info { background-color: var(--primary-color); }
+
+        .logout-link {
+             display: block;
+             text-align: right;
+             margin-bottom: 20px;
+        }
+        .logout-link a {
+             color: var(--secondary-color);
+             text-decoration: none;
+             font-size: 0.9rem;
+        }
+        .logout-link a:hover {
+             color: var(--secondary-hover-color);
+             text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logout-link">
+             <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+
+        <h1>Manage Pages</h1>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <ul class=flash-messages>
+            {% for category, message in messages %}
+              <li class="{{ category }}">{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endwith %}
+
+        <div class="form-section">
+            <h2>Upload New Page</h2>
+            <form method="post" action="{{ url_for('admin') }}" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="html_file">HTML File</label>
+                    <input type="file" id="html_file" name="html_file" accept=".html,.htm" required>
+                </div>
+                <div class="form-group">
+                    <label for="path_name">Access Path Name (e.g., my-cool-page)</label>
+                    <input type="text" id="path_name" name="path_name" placeholder="Leave blank to use filename">
+                    <small>Use only letters, numbers, hyphens. Example: /page/my-cool-page</small>
+                </div>
+                <button type="submit" name="action" value="upload" class="btn btn-primary">Upload Page</button>
+            </form>
+        </div>
+
+        <div class="list-section">
+            <h2>Uploaded Pages</h2>
+            {% if uploaded_pages %}
+                <ul class="page-list">
+                    {% for page in uploaded_pages %}
+                        <li class="page-item">
+                            <div class="page-info">
+                                <a href="{{ url_for('serve_uploaded_page', page_name=page.path) }}" target="_blank">/page/{{ page.path }}</a>
+                                <span>(File: {{ page.filename }})</span>
+                            </div>
+                            <form method="post" action="{{ url_for('admin') }}" style="display: inline;">
+                                <input type="hidden" name="filename_to_delete" value="{{ page.filename }}">
+                                <button type="submit" name="action" value="delete" class="btn btn-danger">Delete</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No pages uploaded yet.</p>
+            {% endif %}
+        </div>
+
+    </div>
+</body>
+</html>
