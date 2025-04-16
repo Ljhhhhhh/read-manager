@@ -5,7 +5,8 @@ from werkzeug.utils import secure_filename
 from flask import Flask, send_file, render_template, request, redirect, url_for, flash, session, send_from_directory, abort
 
 app = Flask(__name__, template_folder='src')
-app.secret_key = os.urandom(24)
+# 使用固定的secret_key而不是随机生成的，确保会话在应用重启后仍然有效
+app.secret_key = 'read_manager_fixed_secret_key_2025'
 app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), 'src', 'uploaded_pages')
 app.config['COVER_FOLDER'] = os.path.join(os.path.dirname(__file__), 'src', 'covers')
 app.config['METADATA_FILE'] = os.path.join(os.path.dirname(__file__), 'src', 'metadata.json')

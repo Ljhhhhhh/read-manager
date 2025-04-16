@@ -1,11 +1,12 @@
 {
-  "Nexus": {
-    "title": "测试",
-    "cover": "Nexus.png"
-  },
   "TheNavalCodex": {
     "title": "纳瓦尔宝典",
     "cover": "TheNavalCodex.png",
     "upload_time": "2025-04-15 20:06:40"
+  },
+  "Nexus": {
+    "title": "智人之上",
+    "cover": "Nexus.png",
+    "upload_time": "2025-04-16 08:44:31"
   }
 }
